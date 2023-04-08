@@ -1,95 +1,97 @@
 package com.dci.drone_manager.models;
 
 import java.time.LocalDateTime;
-
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Delivery {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    Long id;
 
-    Float latitude;
-    Float longitude;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    LocalDateTime dataDeEnvio;
-    LocalDateTime dataDeEntrega;
+  Float latitude;
+  Float longitude;
 
-    Boolean entregado;
-    String videoString;
+  LocalDateTime dataDeEnvio;
+  LocalDateTime dataDeEntrega;
 
-    @ManyToOne
-    Drone drone;
+  Boolean entregado;
+  String videoString;
 
-    public Delivery() {
-        this.dataDeEnvio = LocalDateTime.now();
-        this.entregado = false;
-    }
+  @ManyToOne
+  Drone drone;
 
-    public Long getId() {
-        return id;
-    }
+  public Delivery() {
+    this.dataDeEnvio = LocalDateTime.now();
+    this.entregado = false;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public Float getLatitude() {
-        return latitude;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setLatitude(Float latitude) {
-        this.latitude = latitude;
-    }
+  public Float getLatitude() {
+    return latitude;
+  }
 
-    public Float getLongitude() {
-        return longitude;
-    }
+  public void setLatitude(Float latitude) {
+    this.latitude = latitude;
+  }
 
-    public void setLongitude(Float longitude) {
-        this.longitude = longitude;
-    }
+  public Float getLongitude() {
+    return longitude;
+  }
 
-    public LocalDateTime getDataDeEntrega() {
-        return dataDeEntrega;
-    }
+  public void setLongitude(Float longitude) {
+    this.longitude = longitude;
+  }
 
-    public void setDataDeEntrega(LocalDateTime dataDeEntrega) {
-        this.dataDeEntrega = dataDeEntrega;
-    }
+  public LocalDateTime getDataDeEntrega() {
+    return dataDeEntrega;
+  }
 
-    public String getVideoString() {
-        return videoString;
-    }
+  public void setDataDeEntrega(LocalDateTime dataDeEntrega) {
+    this.dataDeEntrega = dataDeEntrega;
+  }
 
-    public void setVideoString(String videoString) {
-        this.videoString = videoString;
-    }
+  public String getVideoString() {
+    return videoString;
+  }
 
-    public LocalDateTime getDataDeEnvio() {
-        return dataDeEnvio;
-    }
+  public void setVideoString(String videoString) {
+    this.videoString = videoString;
+  }
 
-    public void setDataDeEnvio(LocalDateTime dataDeEnvio) {
-        this.dataDeEnvio = dataDeEnvio;
-    }
+  public LocalDateTime getDataDeEnvio() {
+    return dataDeEnvio;
+  }
 
-    public Boolean getEntregado() {
-        return entregado;
-    }
+  public void setDataDeEnvio(LocalDateTime dataDeEnvio) {
+    this.dataDeEnvio = dataDeEnvio;
+  }
 
-    public void setEntregado(Boolean entregado) {
-        this.entregado = entregado;
-    }
+  public Boolean getEntregado() {
+    return entregado;
+  }
 
-    public Drone getDrone() {
-        return drone;
-    }
+  public void setEntregado(Boolean entregado) {
+    this.entregado = entregado;
+  }
 
-    public void setDrone(Drone drone) {
-        this.drone = drone;
-    }
+  public Drone getDrone() {
+    return drone;
+  }
+
+  public void setDrone(Drone drone) {
+    this.drone = drone;
+  }
 }

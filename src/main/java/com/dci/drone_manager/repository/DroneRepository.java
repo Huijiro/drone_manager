@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import com.dci.drone_manager.models.Drone;
 
 @Repository
-public interface DroneRepository extends JpaRepository<Drone, Integer> {
+public interface DroneRepository extends JpaRepository<Drone, String> {
 
 }

@@ -22,29 +22,29 @@ public class DroneController {
   @Autowired
   private DroneService droneService;
 
-  @PostMapping
-  public ResponseEntity<Drone> create(@RequestBody Drone drone) {
-    return ResponseEntity.ok().body(droneService.create(drone));
+  @PostMapping("/create")
+  public ResponseEntity<Drone> create() throws Exception {
+    return ResponseEntity.ok().body(droneService.create());
   }
 
-  @GetMapping
+  @GetMapping("/all")
   public ResponseEntity<List<Drone>> all() {
     return ResponseEntity.ok().body(droneService.all());
   }
 
   @GetMapping("/{droneId}")
-  public ResponseEntity<Optional<Drone>> getById(@PathVariable Integer droneId) {
+  public ResponseEntity<Optional<Drone>> getById(@PathVariable String droneId) throws Exception {
     return ResponseEntity.ok().body(droneService.getById(droneId));
   }
 
-  @PatchMapping("/{droneId}")
-  public ResponseEntity<Void> update(@PathVariable Integer droneId) {
+  @PatchMapping("/update/{droneId}")
+  public ResponseEntity<Void> update(@PathVariable String droneId) {
     droneService.update(droneId);
     return ResponseEntity.ok().build();
   }
 
-  @DeleteMapping("/{droneId}")
-  public ResponseEntity<Void> delete(@PathVariable Integer droneId) {
+  @DeleteMapping("/delete/{droneId}")
+  public ResponseEntity<Void> delete(@PathVariable String droneId) {
     droneService.delete(droneId);
     return ResponseEntity.ok().build();
   }

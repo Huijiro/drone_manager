@@ -21,8 +21,8 @@ class DroneControllerTest {
   }
 
   @Test
-  void createExists(Drone drone) {
-    assertThat(controller.create(drone)).isNotNull();
+  void createExists() throws Exception {
+    assertThat(controller.create()).isNotNull();
   }
 
   @Test
@@ -31,17 +31,17 @@ class DroneControllerTest {
   }
 
   @Test
-  void getByIdExists(Integer droneId) {
-    assertThat(controller.getById(droneId)).isNotNull();
+  void getByIdExists() throws Exception {
+    assertThat(controller.getById("12b")).isNotNull();
   }
 
   @Test
-  void updateExists(Integer droneId) {
-    assertThat(controller.update(droneId)).isNotNull();
+  void updateExists() {
+    assertThat(controller.update("12b")).isNotNull();
   }
 
   @Test
-  void deleteExists(Integer droneId) {
-    assertThat(controller.delete(droneId)).isNotNull();
+  void deleteExists() {
+    assertThat(controller.delete("12b")).isNotNull();
   }
 }
