@@ -1,59 +1,60 @@
 package com.dci.drone_manager.models;
 
-import org.springframework.data.annotation.Id;
-
+import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Drone {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    Long id;
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    String nome;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    Boolean disponivel;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  String nome;
 
-    @OneToMany
-    Delivery delivery;
+  Boolean disponivel;
 
-    public Drone() {
-        this.disponivel = true;
-    }
+  @OneToMany
+  List<Delivery> delivery;
 
-    public Long getId() {
-        return id;
-    }
+  public Drone() {
+    this.disponivel = true;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public Delivery getDelivery() {
-        return delivery;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-    }
+  public List<Delivery> getDelivery() {
+    return delivery;
+  }
 
-    public Boolean getDisponivel() {
-        return disponivel;
-    }
+  public void setDelivery(List<Delivery> delivery) {
+    this.delivery = delivery;
+  }
 
-    public void setDisponivel(Boolean disponivel) {
-        this.disponivel = disponivel;
-    }
+  public Boolean getDisponivel() {
+    return disponivel;
+  }
 
-    public String getNome() {
-        return nome;
-    }
+  public void setDisponivel(Boolean disponivel) {
+    this.disponivel = disponivel;
+  }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+  public String getNome() {
+    return nome;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
 }

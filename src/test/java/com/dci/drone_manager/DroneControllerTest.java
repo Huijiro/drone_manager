@@ -7,40 +7,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.dci.drone_manager.controllers.DroneController;
+import com.dci.drone_manager.models.Drone;
 
 @SpringBootTest
 class DroneControllerTest {
 
-	@Autowired
-	private DroneController controller;
+  @Autowired
+  private DroneController controller;
 
-	@Test
-	void controllerExists() {
-		assertThat(controller).isNotNull();
-	}
+  @Test
+  void controllerExists() {
+    assertThat(controller).isNotNull();
+  }
 
-	@Test
-	void createExists() {
-		assertThat(controller.create()).isNotNull();
-	}
+  @Test
+  void createExists() throws Exception {
+    assertThat(controller.create()).isNotNull();
+  }
 
-	@Test
-	void allExists() {
-		assertThat(controller.all()).isNotNull();
-	}
+  @Test
+  void allExists() {
+    assertThat(controller.all()).isNotNull();
+  }
 
-	@Test
-	void getByIdExists() {
-		assertThat(controller.getById()).isNotNull();
-	}
+  @Test
+  void getByIdExists() throws Exception {
+    assertThat(controller.getById("12b")).isNotNull();
+  }
 
-	@Test
-	void updateExists() {
-		assertThat(controller.update()).isNotNull();
-	}
+  @Test
+  void updateExists() {
+    assertThat(controller.update("12b")).isNotNull();
+  }
 
-	@Test
-	void deleteExists() {
-		assertThat(controller.delete()).isNotNull();
-	}
+  @Test
+  void deleteExists() {
+    assertThat(controller.delete("12b")).isNotNull();
+  }
 }
