@@ -21,6 +21,7 @@ public class DroneController {
   @Autowired
   private DroneService droneService;
 
+
   @PostMapping(value = { "/create", "/create/{nome}" })
   public ResponseEntity<Drone> create(@PathVariable Optional<String> nome) throws Exception {
     return ResponseEntity.ok().body(droneService.create(nome));
@@ -37,8 +38,9 @@ public class DroneController {
   }
 
   @PatchMapping("/update/{droneId}")
-  public ResponseEntity<Void> update(@PathVariable String droneId) {
-    droneService.update(droneId);
+  public ResponseEntity<Void> update(@PathVariable String droneId, @RequestBody Drone drone)
+      throws Exception {
+    droneService.update(droneId, drone);
     return ResponseEntity.ok().build();
   }
 
