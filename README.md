@@ -17,8 +17,8 @@
 
 ## Features
 
-  - [] Cadastro de drones
-  - [] Cadastro de entregas dos drones
+  - [ ] Cadastro de drones
+  - [ ] Cadastro de entregas dos drones
 
 ## Rotas da Api
 
