@@ -23,8 +23,8 @@ public class DroneController {
   private DroneService droneService;
 
   @PostMapping("/create")
-  public ResponseEntity<Drone> create() throws Exception {
-    return ResponseEntity.ok().body(droneService.create());
+  public ResponseEntity<Drone> create(@RequestBody Optional<String> nome) throws Exception {
+    return ResponseEntity.ok().body(droneService.create(nome));
   }
 
   @GetMapping("/all")
@@ -38,8 +38,9 @@ public class DroneController {
   }
 
   @PatchMapping("/update/{droneId}")
-  public ResponseEntity<Void> update(@PathVariable String droneId) {
-    droneService.update(droneId);
+  public ResponseEntity<Void> update(@PathVariable String droneId, @RequestBody Drone drone)
+      throws Exception {
+    droneService.update(droneId, drone);
     return ResponseEntity.ok().build();
   }
 

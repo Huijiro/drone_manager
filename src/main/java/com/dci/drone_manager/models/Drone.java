@@ -1,6 +1,7 @@
 package com.dci.drone_manager.models;
 
 import java.util.List;
+import java.util.Optional;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,15 +16,18 @@ public class Drone {
   String id;
 
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  String nome;
+  Optional<String> nome;
 
   Boolean disponivel;
 
   @OneToMany
   List<Delivery> delivery;
 
-  public Drone() {
+  public Drone() {};
+
+  public Drone(Optional<String> nome) {
     this.disponivel = true;
+    this.nome = nome;
   }
 
   public String getId() {
@@ -50,11 +54,11 @@ public class Drone {
     this.disponivel = disponivel;
   }
 
-  public String getNome() {
+  public Optional<String> getNome() {
     return nome;
   }
 
-  public void setNome(String nome) {
+  public void setNome(Optional<String> nome) {
     this.nome = nome;
   }
 }

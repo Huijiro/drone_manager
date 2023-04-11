@@ -13,12 +13,14 @@ public class DroneService {
   @Autowired
   private DroneRepository repository;
 
-  public Drone create() throws Exception {
-    // if (repository.existsById(drone.getId())) {
-    // throw new Exception("Drone ja existe");
-    // }
-    Drone drone = new Drone();
-    return repository.save(drone);
+
+
+  @SuppressWarnings("unlikely-arg-type")
+  public Drone create(Optional<String> nome) throws Exception {
+    if (repository.findAll().contains(nome)) {
+      throw new Exception("Drone ja existe");
+    }
+    return repository.save(new Drone(nome));
   }
 
   public List<Drone> all() {
@@ -26,16 +28,21 @@ public class DroneService {
   }
 
   public Optional<Drone> getById(String droneId) throws Exception {
-    // if (!repository.existsById(droneId)) {
-    // throw new Exception("Drone não existe");
-    // }
+    if (!repository.existsById(droneId)) {
+      throw new Exception("Drone não existe");
+    }
     return repository.findById(droneId);
   }
 
-  public void update(String droneId) {
-    var drone = new Drone();
-    drone.setDisponivel(true);
-    repository.save(drone);
+  public void update(String droneId, Drone drone) throws Exception {
+    if (!repository.existsById(droneId)) {
+      throw new Exception("Drone não localizado para atualização");
+    }
+
+    Drone droneUpdate = new Drone();
+    droneUpdate.setNome(drone.getNome());
+    drone.setDisponivel(drone.getDisponivel());
+    repository.save(droneUpdate);
   }
 
   public void delete(String droneId) {
