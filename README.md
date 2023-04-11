@@ -25,10 +25,13 @@
   Nessa rota é possivel criar um drone atraves da requisição POST, sendo opcional informar o nome do drone no corpo da requisição.
 
   * `http://localhost:8080/drones/1`
+
   Com a requisição GET, nessa rota será possivel buscar um drone pelo id e visualizar todas as informações do mesmo.
 
   * `http://localhost:8080/drones/1`
+
   Atravès da requisição PATCH é possível buscar e atualizar as informaçẽs de um drone.
 
   * `http://localhost:8080/drones/1`
+  
   Caso queira deletar um drone da api, deve-se utilizar essa rota com a requisição DELETE.
