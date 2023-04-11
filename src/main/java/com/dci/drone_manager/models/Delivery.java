@@ -20,7 +20,7 @@ public class Delivery {
   LocalDateTime dataDeEnvio;
   LocalDateTime dataDeEntrega;
 
-  Boolean entregado;
+  Boolean entregue;
   String videoString;
 
   @ManyToOne
@@ -28,7 +28,7 @@ public class Delivery {
 
   public Delivery() {
     this.dataDeEnvio = LocalDateTime.now();
-    this.entregado = false;
+    this.entregue = false;
   }
 
   public String getId() {
@@ -79,12 +79,12 @@ public class Delivery {
     this.dataDeEnvio = dataDeEnvio;
   }
 
-  public Boolean getEntregado() {
-    return entregado;
+  public Boolean getEntregue() {
+    return entregue;
   }
 
-  public void setEntregado(Boolean entregado) {
-    this.entregado = entregado;
+  public void setEntregue(Boolean entregue) {
+    this.entregue = entregue;
   }
 
   public Drone getDrone() {

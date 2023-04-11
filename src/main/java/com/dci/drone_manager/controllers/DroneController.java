@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +21,9 @@ public class DroneController {
   @Autowired
   private DroneService droneService;
 
-  @PostMapping("/create")
-  public ResponseEntity<Drone> create(@RequestBody Optional<String> nome) throws Exception {
+
+  @PostMapping(value = { "/create", "/create/{nome}" })
+  public ResponseEntity<Drone> create(@PathVariable Optional<String> nome) throws Exception {
     return ResponseEntity.ok().body(droneService.create(nome));
   }
 

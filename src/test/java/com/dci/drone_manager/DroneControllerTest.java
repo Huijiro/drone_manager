@@ -2,12 +2,12 @@ package com.dci.drone_manager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.dci.drone_manager.controllers.DroneController;
-import com.dci.drone_manager.models.Drone;
 
 @SpringBootTest
 class DroneControllerTest {
@@ -22,7 +22,8 @@ class DroneControllerTest {
 
   @Test
   void createExists() throws Exception {
-    assertThat(controller.create()).isNotNull();
+    Optional<String> nome = Optional.of("Drone 1");
+    assertThat(controller.create(nome)).isNotNull();
   }
 
   @Test

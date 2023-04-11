@@ -14,13 +14,14 @@ public class DroneService {
   private DroneRepository repository;
 
 
-
-  @SuppressWarnings("unlikely-arg-type")
   public Drone create(Optional<String> nome) throws Exception {
-    if (repository.findAll().contains(nome)) {
-      throw new Exception("Drone ja existe");
+    if (nome.isPresent()) {
+      Drone drone = new Drone(nome.get());
+      return repository.save(drone);
+    } else {
+      Drone drone = new Drone();
+      return repository.save(drone);
     }
-    return repository.save(new Drone(nome));
   }
 
   public List<Drone> all() {

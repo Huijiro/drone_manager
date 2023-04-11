@@ -30,6 +30,11 @@ public class Drone {
     this.nome = nome;
   }
 
+  public Drone(String nome) {
+    this.nome = nome;
+    this.disponivel = true;
+  }
+
   public String getId() {
     return id;
   }
