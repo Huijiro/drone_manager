@@ -13,12 +13,14 @@ public class DroneService {
   @Autowired
   private DroneRepository repository;
 
-  public Drone create() throws Exception {
-    // if (repository.existsById(drone.getId())) {
-    // throw new Exception("Drone ja existe");
-    // }
-    Drone drone = new Drone();
-    return repository.save(drone);
+  public Drone create(Optional<String> nome) throws Exception {
+    if (nome.isPresent()) {
+      Drone drone = new Drone(nome.get());
+      return repository.save(drone);
+    } else {
+      Drone drone = new Drone();
+      return repository.save(drone);
+    }
   }
 
   public List<Drone> all() {
