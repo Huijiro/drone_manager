@@ -13,6 +13,10 @@
     * `mvn install`
 3. Rode o comando do spring para subir a api
     mvn spring-boot:run
+## Features
+
+   [x] Cadastro de drones
+   [x] Cadastro de entregas dos drones
 
 ## Rotas da Api
   http://localhost:8080/drones
