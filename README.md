@@ -22,18 +22,38 @@
 
 ## Rotas da Api
 
-  Na rota abaixo é possivel criar um drone atraves da requisição POST, sendo opcional informar o nome do drone no corpo da requisição.
+  <p>Na rota abaixo é possivel criar um drone atraves da requisição POST, sendo opcional informar o nome do drone no corpo da requisição.</p>
 
-    `http://localhost:8080/drones`
+    `http://localhost:8080/drones/create`
+
+    ou
+
+    `http://localhost:8080/drones/create/nome`
+
+  É possível buscar todos os drones cadastrados na api, atraves da requisição GET na rota abaixo:
+  
+    `http://localhost:8080/drones/all`
 
   Com a requisição GET, nessa rota será possivel buscar um drone pelo id e visualizar todas as informações do mesmo.
     
-     `http://localhost:8080/drones/1`
+    `http://localhost:8080/drones/1`
 
   Atravès da requisição PATCH é possível buscar e atualizar as informaçẽs de um drone.
-      
-       `http://localhost:8080/drones/1`
+    
+    `http://localhost:8080/drones/update/1`
 
   Caso queira deletar um drone da api, deve-se utilizar essa rota com a requisição DELETE.
     
-     `http://localhost:8080/drones/1`
+    `http://localhost:8080/drones/delete/1`
+
+  Para criar entregas, basta acessar a rota abaixo com a requisição POST:
+
+    `http://localhost:8080/delivery/create`
+
+  E para visualizar todas as entregas, acessar a rota abaixo com a requisição GET:
+
+    `http://localhost:8080/delivery/all`
+
+  Na rota abaixo, com a requisição GET é possivel verificar o status de uma entrega passando o id da entrega como parametro:
+
+    `http://localhost:8080/delivery/recebido/1`
