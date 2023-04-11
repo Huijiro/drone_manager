@@ -1,6 +1,10 @@
 package com.dci.drone_manager.models;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,12 +18,13 @@ public class Drone {
   @GeneratedValue(strategy = GenerationType.UUID)
   String id;
 
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   String nome;
 
   Boolean disponivel;
 
   @OneToMany
+  @JsonIgnore
   List<Delivery> delivery;
 
   public Drone() {

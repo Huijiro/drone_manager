@@ -1,5 +1,8 @@
 package com.dci.drone_manager.controllers;
 
+import com.dci.drone_manager.exception.NoDelivery;
+import com.dci.drone_manager.exception.NoDroneAvailable;
+import com.dci.drone_manager.exception.NoField;
 import com.dci.drone_manager.models.Delivery;
 import com.dci.drone_manager.service.DeliveryService;
 
@@ -9,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +25,8 @@ public class DeliveryController {
     private DeliveryService droneDeliveryService;
 
     @PostMapping("/create")
-    public ResponseEntity<Delivery> create(@RequestParam Float latitude, @RequestParam Float longitude) {
+    public ResponseEntity<Delivery> create(@RequestParam Float latitude, @RequestParam Float longitude)
+            throws NoDroneAvailable, NoField {
         return ResponseEntity.ok().body(droneDeliveryService.create(latitude, longitude));
     }
 
@@ -31,8 +36,7 @@ public class DeliveryController {
     }
 
     @PatchMapping("/recebido/{deliveryId}")
-    public ResponseEntity<String> recebido(@RequestParam String deliveryId) {
-        droneDeliveryService.recebido(deliveryId);
-        return ResponseEntity.ok().body("Entrega atualizada com sucesso!");
+    public ResponseEntity<Delivery> recebido(@PathVariable String deliveryId) throws NoDelivery {
+        return ResponseEntity.ok().body(droneDeliveryService.recebido(deliveryId));
     }
 }

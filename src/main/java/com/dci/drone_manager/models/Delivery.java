@@ -1,6 +1,9 @@
 package com.dci.drone_manager.models;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,9 +21,12 @@ public class Delivery {
   Float longitude;
 
   LocalDateTime dataDeEnvio;
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   LocalDateTime dataDeEntrega;
 
   Boolean entregue;
+
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   String videoString;
 
   @ManyToOne

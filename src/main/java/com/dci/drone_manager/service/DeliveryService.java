@@ -1,5 +1,8 @@
 package com.dci.drone_manager.service;
 
+import com.dci.drone_manager.exception.NoDelivery;
+import com.dci.drone_manager.exception.NoDroneAvailable;
+import com.dci.drone_manager.exception.NoField;
 import com.dci.drone_manager.models.Delivery;
 import com.dci.drone_manager.models.Drone;
 import com.dci.drone_manager.repository.DeliveryRepository;
@@ -21,11 +24,19 @@ public class DeliveryService {
     @Autowired
     private DroneRepository droneRepository;
 
-    public Delivery create(Float latitude, Float longitude) {
+    public Delivery create(Float latitude, Float longitude) throws NoDroneAvailable, NoField {
         Optional<Drone> drone = droneRepository.findByDisponivel(true).stream().findFirst();
 
+        if (latitude.equals(null)) {
+            throw new NoField("latitude");
+        }
+
+        if (longitude.equals(null)) {
+            throw new NoField("longitude");
+        }
+
         if (!drone.isPresent()) {
-            throw new RuntimeException("Nenhum drone disponível!");
+            throw new NoDroneAvailable();
         }
 
         Delivery delivery = new Delivery();
@@ -45,22 +56,21 @@ public class DeliveryService {
         return repository.findAll();
     }
 
-    public void recebido(String deliveryId) {
+    public Delivery recebido(String deliveryId) throws NoDelivery {
         Optional<Delivery> delivery = repository.findById(deliveryId);
 
         if (!delivery.isPresent()) {
-            throw new RuntimeException("Entrega não encontrada!");
+            throw new NoDelivery();
         }
 
         delivery.get().setEntregue(true);
         delivery.get().setDataDeEntrega(LocalDateTime.now());
-
-        repository.save(delivery.get());
 
         Drone drone = delivery.get().getDrone();
 
         drone.setDisponivel(true);
 
         droneRepository.save(drone);
+        return repository.save(delivery.get());
     }
 }
